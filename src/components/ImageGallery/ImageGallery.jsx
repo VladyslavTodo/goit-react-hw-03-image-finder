@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { getImagesApi } from '../sevices/api';
+import React, { Component } from 'react';
+import getImagesApi from '../sevices/api';
 import Notiflix from 'notiflix';
 
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
@@ -17,15 +17,21 @@ class ImageGallery extends Component {
     isLoading: false,
     isModalOpen: false,
     modalUrl: null,
+    searchValueCopy: null,
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.SearchValue !== this.props.SearchValue) {
-      this.setState({ page: 1 });
-      this.fetchImages();
+  static getDerivedStateFromProps(props, state) {
+    if (props.SearchValue !== state.searchValueCopy) {
+      return { page: 1, searchValueCopy: props.SearchValue };
     }
+    return null;
+  }
 
-    if (prevState.page !== this.state.page) {
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.SearchValue !== this.props.SearchValue ||
+      prevState.page !== this.state.page
+    ) {
       this.fetchImages();
     }
   }

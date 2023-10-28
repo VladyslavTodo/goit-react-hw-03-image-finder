@@ -67,6 +67,7 @@ export const Button = styled.button`
   &:active {
     filter: brightness(0.8);
   }
+
   &:focus {
     outline: #00a97f;
     border: 1px solid #007356;
@@ -98,6 +99,7 @@ export const InputList = styled.input`
   &:active {
     filter: brightness(0.8);
   }
+  
   &:focus {
     outline: #00a97f;
     border: 1px solid #007356;
