@@ -19,6 +19,7 @@ class App extends Component {
     isLoading: false,
     isModalOpen: false,
     modalUrl: null,
+    totalHits: null,
   };
 
   componentDidUpdate(_, prevState) {
@@ -43,6 +44,7 @@ class App extends Component {
             this.state.page === 1
               ? data.hits
               : [...prevState.images, ...data.hits],
+          totalHits: data.totalHits,
         }));
       })
       .catch(error => this.setState({ error: error.message }))
@@ -73,14 +75,18 @@ class App extends Component {
   };
 
   render() {
-    const { images, isLoading, isModalOpen, modalUrl, error } = this.state;
+    const { images, isLoading, isModalOpen, modalUrl, error, totalHits } =
+      this.state;
+
     return (
       <>
         <Searchbar onSubmit={this.getSearchValue} />
         {error && <h1>{error}</h1>}
         <ImageGallery images={images} handelModalOpen={this.handelModalOpen} />
         {isLoading && <Loader />}
-        {images.length > 0 && <ButtonLoadMore onClick={this.handelloadMore} />}
+        {totalHits > images.length && (
+          <ButtonLoadMore onClick={this.handelloadMore} />
+        )}
         {isModalOpen && (
           <Modal modalUrl={modalUrl} closeModal={this.closeModal} />
         )}
