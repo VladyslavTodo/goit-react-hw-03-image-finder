@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   display: flex;
-
   justify-content: center;
   color: black;
   background-color: #d5f9ed;

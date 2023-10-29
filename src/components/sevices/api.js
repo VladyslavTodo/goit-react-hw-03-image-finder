@@ -15,6 +15,7 @@ const getImagesApi = async (query, page = 1) => {
       orientation: 'horizontal',
     },
   });
+
   return response.data;
 };
 

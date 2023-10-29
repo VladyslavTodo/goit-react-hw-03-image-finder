@@ -14,10 +14,9 @@ export const Overlay = styled.div`
 `;
 
 export const ModalStyle = styled.div`
-
   max-width: 1200px;
   max-height: 800px;
-padding: 30px;
+  padding: 30px;
 `;
 
 export const Img = styled.img`
